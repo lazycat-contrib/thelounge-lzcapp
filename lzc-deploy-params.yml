@@ -1,0 +1,19 @@
+params:
+  - id: init_user
+    type: string
+    name: "thelounge login user name"
+    description: "thelounge login user name"
+
+  - id: init_user_password
+    type: string
+    name: "thelounge login user password"
+    description: "thelounge login user password"
+
+locales:
+  zh:
+    init_user:
+      name: "初始化用户"
+      description: "thelounge 初始用户名称"
+    init_user_password:
+      name: "初始化用户密码"
+      description: "thelounge 初始用户密码"

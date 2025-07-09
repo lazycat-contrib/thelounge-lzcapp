@@ -1,0 +1,30 @@
+name: The Lounge
+package: cloud.lazycat.app.thelounge
+version: 4.4.3
+min_os_version: 1.3.8
+description: 💬 Modern, responsive, cross-platform, self-hosted web IRC client
+homepage: https://github.com/thelounge/thelounge
+author: thelounge
+application:
+  subdomain: thelounge
+  background_task: true
+  public_path:
+    - /
+  routes:
+    - /=http://thelounge:9000
+services:
+  thelounge:
+    # ghcr.io/thelounge/thelounge:4.4.3
+    image: registry.lazycat.cloud/czyt/thelounge/thelounge:0bc19d3b5a239fb6
+    binds:
+      - /lzcapp/var/data:/var/opt/thelounge
+    setup_script: |
+      echo "Setting up The Lounge..."
+      if [ -f /lzcapp/var/data/sys_inited ]; then
+        echo "The Lounge is already initialized."
+      else
+        echo "Initializing The Lounge..."
+       if (thelounge add {{.U.init_user }}  --password {{.U.init_user_password}} || thelounge reset {{.U.init_user }}  --password {{.U.init_user_password}}); then
+         touch /lzcapp/var/data/sys_inited
+       fi
+      fi
