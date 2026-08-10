@@ -1,0 +1,29 @@
+application:
+  subdomain: thelounge
+  background_task: true
+  public_path:
+    - /
+  upstreams:
+    - location: /
+      backend: http://thelounge:9000/
+services:
+  thelounge:
+    # ghcr.io/thelounge/thelounge:4.4.3
+    image: registry.lazycat.cloud/czyt/thelounge/thelounge:0bc19d3b5a239fb6
+    environment:
+      - THELOUNGE_INIT_USER={{ .U.init_user }}
+      - THELOUNGE_INIT_PASSWORD={{ .U.init_user_password }}
+    binds:
+      - /lzcapp/var/data:/var/opt/thelounge
+    setup_script: |
+      set -eu
+      marker=/lzcapp/var/data/sys_inited
+      if [ -f "$marker" ]; then
+        echo "The Lounge is already initialized."
+      else
+        echo "Initializing The Lounge..."
+        if thelounge add "$THELOUNGE_INIT_USER" --password "$THELOUNGE_INIT_PASSWORD" || \
+           thelounge reset "$THELOUNGE_INIT_USER" --password "$THELOUNGE_INIT_PASSWORD"; then
+          touch "$marker"
+        fi
+      fi

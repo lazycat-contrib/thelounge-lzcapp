@@ -1,0 +1,17 @@
+package: cloud.lazycat.app.thelounge
+version: 4.4.3
+name: The Lounge
+description: Modern, responsive, cross-platform, self-hosted web IRC client.
+min_os_version: 1.5.0
+homepage: https://github.com/thelounge/thelounge
+author: thelounge
+permissions:
+  required:
+    - net.internet
+locales:
+  zh:
+    name: The Lounge
+    description: 现代、响应式、跨平台的自托管 Web IRC 客户端。
+  en:
+    name: The Lounge
+    description: Modern, responsive, cross-platform, self-hosted web IRC client.

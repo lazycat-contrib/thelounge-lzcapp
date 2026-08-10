@@ -1,13 +1,13 @@
 params:
   - id: init_user
     type: string
-    name: "thelounge login user name"
-    description: "thelounge login user name"
+    name: "Initial Username"
+    description: "Username for the initial The Lounge account"
 
   - id: init_user_password
-    type: string
-    name: "thelounge login user password"
-    description: "thelounge login user password"
+    type: secret
+    name: "Initial Password"
+    description: "Password for the initial The Lounge account"
 
 locales:
   zh:
