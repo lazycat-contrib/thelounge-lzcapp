@@ -1,4 +1,5 @@
 package: cloud.lazycat.app.thelounge
+license: MIT
 version: 4.5.2
 name: The Lounge
 description: Modern, responsive, cross-platform, self-hosted web IRC client.
